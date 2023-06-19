@@ -1555,7 +1555,7 @@ d-appendix {
 
 d-appendix h3 {
   grid-column: page-start / text-start;
-  font-size: 15px;
+  font-size: 5px;
   font-weight: 500;
   margin-top: 1em;
   margin-bottom: 0;
@@ -4899,7 +4899,7 @@ input[type="password"] {
   border-radius: none;
   outline: none;
 
-  font-size: 18px;
+  font-size: 22px;
   background: none;
   width: 25%;
   padding: 10px;
