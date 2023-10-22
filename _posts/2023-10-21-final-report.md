@@ -299,7 +299,7 @@ Introductory Video: [https://youtu.be/f4LVIW9VlrM?feature=shared](https://youtu.
 Proposal: [Khushi Balia - Building an LLVM Backend for PRU](https://elinux.org/BeagleBoard/GSoC/2023_Proposal/Khushi-Balia)
 
 #### <ins>Conclusion<ins>
-In conclusion, the journey of my Google Summer of Code project, "Building an LLVM Backend for PRU," has been nothing short of transformative. What began as an ambitious undertaking to contribute to the open-source community has culminated in the successful creation of a functional LLVM backend for PRU, capable of generating assembly code for essential PRU instructions.
+In conclusion, the journey of my Google Summer of Code project, "Building an LLVM Backend for PRU," has been nothing short of transformative. What began as an ambitious undertaking to contribute to the open-source community has culminated in the successful creation of a functional LLVM backend for PRU, capable of generating assembly code for some PRU instructions.
 
 Throughout this incredible journey, I have faced and overcome various challenges,from navigating the intricacies of the vast LLVM codebase to bridging the gap between LLVM IR and machine-level instructions.
 
