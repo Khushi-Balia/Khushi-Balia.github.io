@@ -270,7 +270,7 @@ With the groundwork laid, I added AsmPrinter support, a crucial component in cod
 
 Task 2 enriches the PRU target machine architecture by enabling it to produce assembly output, a fundamental step in the code generation process.
 
-#### <ins>Implementing DAGToDAGISel - Bridging LLVM IR to Machine DAG<ins>
+#### <ins>3. Implementing DAGToDAGISel - Bridging LLVM IR to Machine DAG<ins>
 
 Task 3 marks a pivotal phase in developing the PRU target machine architecture. It focuses on extending support for DAGToDAGISel, a critical component responsible for converting LLVM IR DAG (Directed Acyclic Graph) to the Machine DAG. This process is essential for ensuring that the high-level LLVM IR code can be transformed into low-level machine code instructions.
 
