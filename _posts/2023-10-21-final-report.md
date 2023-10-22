@@ -141,7 +141,7 @@ lib/Target/PRU/
 
 Image
 
-#### Workflow for Milestone 2 and Milestone 3:
+Workflow for Milestone 2 and Milestone 3:
 
 ##### TableGen description files
 
@@ -200,7 +200,7 @@ def PRUcallseq_start :
                     	[SDNPHasChain, SDNPOutGlue]>;
 ```
 
-##### Target registration
+#### Target registration
 
 Once the necessary TableGen description files were written, the next step was to register the new target PRU with LLVM. The following things were done: 
 
@@ -234,7 +234,7 @@ The PRUTargetInfo class calls the RegisterTarget method to register the PRU targ
 The MCTargetDesc class provides LLVM with information about the PRU target's machine code. This information is used by LLVM to generate code for the PRU target.
 These were the main things done for milestone 2.
 
-#### The work for milestone 3 was divided into 3 tasks:
+The work for milestone 3 was divided into 3 tasks:
 
 #### 1. Laying the Foundations - PRU Target Machine Architecture
 
@@ -256,7 +256,7 @@ In this task, I created/ modified a number of files to implement the target mach
 
 Completing Task 1 involved setting the stage for the entire PRU target machine architecture, from instruction handling to function management. These files form the cornerstone upon which subsequent development tasks will build.
 
-#### 2. Adding AsmPrinter Support
+##### 2. Adding AsmPrinter Support
 
 With the groundwork laid, I added AsmPrinter support, a crucial component in code generation. This task focuses on turning Machine DAGs into assembly code through the following steps:
 
