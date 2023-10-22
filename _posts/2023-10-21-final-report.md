@@ -12,9 +12,9 @@ toc:
 
 As I sit here on the eve of my Google Summer of Code project submission deadline, I can't help but reflect on the incredible journey I've been on over the past few months. When I first applied to GSoC, I was motivated by the opportunity to work on a real-world open source project and to gain valuable experience. I was also eager to learn from and collaborate with other talented developers from around the world.
 
-I was thrilled to be accepted into the program and to be given the opportunity to work on the `Building an LLVM Backend for PRU` project under `Beagleboard.org`. 
+I was thrilled to be accepted into the program and to be given the opportunity to work on the `Building an LLVM Backend for PRU` project under `Beagleboard.org`.
 
-Image
+![WhatsApp Image 2023-10-22 at 11 24 08 PM](https://github.com/Khushi-Balia/Khushi-Balia.github.io/assets/104241344/c1587042-2236-47fb-9b2a-8d17205417f7)
 
 As I embarked on my Google Summer of Code project of Building an LLVM backend for PRU, I was filled with both excitement and apprehension. The prospect of working on such a widely used and respected compiler infrastructure was exhilarating, but the task of navigating the vast and unexplored territory of the LLVM codebase loomed large.
 
@@ -85,7 +85,8 @@ lib/TargetPRU/
 ```
 By implementing dummy code for the above, I was able to successfully register PRU as a target with LLVM version 16. This was a critical step in the development of the new PRU backend.
 
-Image 
+![WhatsApp Image 2023-10-22 at 1 47 21 AM](https://github.com/Khushi-Balia/Khushi-Balia.github.io/assets/104241344/5fa1de17-3f8b-46b7-aa06-45cab9e9b130)
+
 
 #### <ins>3. Adding code for PRU assembly code generation<ins>
 
@@ -138,8 +139,7 @@ lib/Target/PRU/
 └── PRUTargetMachine.cpp
 └── PRUTargetMachine.h
 ```
-
-Image
+![WhatsApp Image 2023-10-22 at 11 25 02 PM(1)](https://github.com/Khushi-Balia/Khushi-Balia.github.io/assets/104241344/9c94e489-2612-409d-96b6-5a226be0e45b)
 
 Workflow for Milestone 2 and Milestone 3:
 
