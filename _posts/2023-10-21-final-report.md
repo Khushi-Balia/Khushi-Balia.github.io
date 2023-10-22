@@ -7,7 +7,7 @@ categories:
 giscus_comments: 
 related_posts: 
 toc:
-  sidebar: left
+  sidebar:
 ---
 
 As I sit here on the eve of my Google Summer of Code project submission deadline, I can't help but reflect on the incredible journey I've been on over the past few months. When I first applied to GSoC, I was motivated by the opportunity to work on a real-world open source project and to gain valuable experience. I was also eager to learn from and collaborate with other talented developers from around the world.
