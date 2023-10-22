@@ -294,7 +294,7 @@ Mentors: **Vedant Paranjape**, **Abhishek Kumar**, and **Shreyas Atre**
 
 Code: [llvm-project](https://github.com/Khushi-Balia/llvm-project/tree/llvm-pru)
 
-Introductory Video: https://youtu.be/f4LVIW9VlrM?feature=shared
+Introductory Video: [https://youtu.be/f4LVIW9VlrM?feature=shared](https://youtu.be/f4LVIW9VlrM?feature=shared)
 
 Proposal: [Khushi Balia - Building an LLVM Backend for PRU](https://elinux.org/BeagleBoard/GSoC/2023_Proposal/Khushi-Balia)
 
