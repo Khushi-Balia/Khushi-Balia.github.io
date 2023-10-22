@@ -288,10 +288,21 @@ Task 3 completes the critical chain that allows LLVM to translate high-level LLV
 
 ### <ins>Project Details<ins>:
 
-#### Project Name:
-#### Mentors:
-#### Code:
-#### Introductory Video:
-#### Proposal:
+Project Name: **Building an LLVM Backend for PRU**
 
-### Conclusion
+Mentors: **Vedant Paranjape**, **Abhishek Kumar**, and **Shreyas Atre**
+
+Code: [llvm-project](https://github.com/Khushi-Balia/llvm-project/tree/llvm-pru)
+
+Introductory Video: https://youtu.be/f4LVIW9VlrM?feature=shared
+
+Proposal: [Khushi Balia - Building an LLVM Backend for PRU](https://elinux.org/BeagleBoard/GSoC/2023_Proposal/Khushi-Balia)
+
+#### <ins>Conclusion<ins>
+In conclusion, the journey of my Google Summer of Code project, "Building an LLVM Backend for PRU," has been nothing short of transformative. What began as an ambitious undertaking to contribute to the open-source community has culminated in the successful creation of a functional LLVM backend for PRU, capable of generating assembly code for essential PRU instructions.
+
+Throughout this incredible journey, I have faced and overcome various challenges,from navigating the intricacies of the vast LLVM codebase to bridging the gap between LLVM IR and machine-level instructions.
+
+I am very grateful to my mentors, **Vedant Paranjape**, **Abhishek Kumar**, and **Shreyas Atre**, whose unwavering guidance and support have been instrumental in this endeavor. Their expertise, encouragement, and commitment to my growth as a developer have played a pivotal role in the project's success
+
+I am thankful for the opportunity to participate in Google Summer of Code and to work with BeagleBoard.org on this project. This experience has not only been a journey of learning and growth but also a testament to the power of collaboration and open-source development. I am excited to continue contributing to the community and building on the foundation laid during GSoC.
