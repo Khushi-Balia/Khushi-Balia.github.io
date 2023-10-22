@@ -1,4 +1,325 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://khushi-balia.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://khushi-balia.github.io/" rel="alternate" type="text/html" hreflang="en" /><updated>2023-10-22T17:28:32+00:00</updated><id>https://khushi-balia.github.io/feed.xml</id><title type="html">blank</title><subtitle></subtitle><entry><title type="html">Writing Tablegen files for PRU target</title><link href="https://khushi-balia.github.io/blog/2023/week-4/" rel="alternate" type="text/html" title="Writing Tablegen files for PRU target" /><published>2023-06-30T19:53:00+00:00</published><updated>2023-06-30T19:53:00+00:00</updated><id>https://khushi-balia.github.io/blog/2023/week-4</id><content type="html" xml:base="https://khushi-balia.github.io/blog/2023/week-4/"><![CDATA[<p>The LLVM project provides a powerful infrastructure for compiler development, enabling the creation of efficient and optimized code for various target architectures. To harness the full potential of LLVM, developers often need to provide accurate and detailed information about the target hardware. Two essential components in this process are the TableGen files for Register Info and Instruction Info.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://khushi-balia.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://khushi-balia.github.io/" rel="alternate" type="text/html" hreflang="en" /><updated>2023-10-22T17:37:03+00:00</updated><id>https://khushi-balia.github.io/feed.xml</id><title type="html">blank</title><subtitle></subtitle><entry><title type="html">My Google Summer of Code Experience- A Journey of Learning, Growth, and Contribution</title><link href="https://khushi-balia.github.io/blog/2023/final-report/" rel="alternate" type="text/html" title="My Google Summer of Code Experience- A Journey of Learning, Growth, and Contribution" /><published>2023-10-21T19:53:00+00:00</published><updated>2023-10-21T19:53:00+00:00</updated><id>https://khushi-balia.github.io/blog/2023/final-report</id><content type="html" xml:base="https://khushi-balia.github.io/blog/2023/final-report/"><![CDATA[<p>As I sit here on the eve of my Google Summer of Code project submission deadline, I can’t help but reflect on the incredible journey I’ve been on over the past few months. When I first applied to GSoC, I was motivated by the opportunity to work on a real-world open source project and to gain valuable experience. I was also eager to learn from and collaborate with other talented developers from around the world.</p>
+
+<p>I was thrilled to be accepted into the program and to be given the opportunity to work on the <code class="language-plaintext highlighter-rouge">Building an LLVM Backend for PRU</code> project under <code class="language-plaintext highlighter-rouge">Beagleboard.org</code>.</p>
+
+<p>Image</p>
+
+<p>As I embarked on my Google Summer of Code project of Building an LLVM backend for PRU, I was filled with both excitement and apprehension. The prospect of working on such a widely used and respected compiler infrastructure was exhilarating, but the task of navigating the vast and unexplored territory of the LLVM codebase loomed large.</p>
+
+<p>The initial stages of the project were indeed challenging. The LLVM codebase is immense, with thousands of lines of code spread across countless files and directories. Documentation, while present, was often sparse or outdated. As I delved deeper into the labyrinthine depths of the code, I found myself frequently lost. But I persevered, fueled by my determination to succeed and complete the project.</p>
+
+<p>Gradually, I began to make progress. I started to understand the overall structure of the LLVM codebase and to identify the key components that would be involved in building a new backend. I also began to develop a deeper understanding of the various stages of the compilation process.</p>
+
+<p>As the weeks turned into months, I slowly but surely made progress on the tasks. There were <strong>three main milestones</strong> of the project.</p>
+
+<h4 id="1-understanding-the-cpu0-backend-tutorial-and-implementing-it">1. Understanding the Cpu0 backend tutorial and implementing it</h4>
+
+<p>The first milestone of the project was to understand and implement the Cpu0 backend tutorial. This tutorial provides a step-by-step guide to building a new LLVM backend. By following the tutorial, I was able to gain a deep understanding of the LLVM backend architecture.</p>
+
+<p>The Cpu0 backend tutorial was originally developed for <strong>LLVM version 3.1</strong>. Since then, the LLVM codebase has undergone a number of significant changes. As a result, the tutorial was not directly compatible with the newer LLVM versions.</p>
+
+<p>In order to use the tutorial as a starting point for my project, I had to make a number of modifications to the code.</p>
+
+<p>You can find the steps of building the Cpu0 backend in <a href="https://khushi-balia.github.io/blog/2023/week-2/">this blog</a> of mine.</p>
+
+<h4 id="2-new-backend-initialization-for-pru">2. New backend initialization for PRU</h4>
+
+<p>The second milestone of the project was to implement the necessary infrastructure for supporting the PRU target. This involved registering PRU as a target with <strong>LLVM version 16</strong> (the latest version)</p>
+
+<p>One of the key tasks involved in registering PRU as a target was to create a new Target class for PRU. This class is responsible for providing LLVM with information about the PRU architecture, such as the instruction set, register set and so on.</p>
+
+<p>Directory structure for PRU LLVM backend for <strong>milestone 2</strong>.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>lib/TargetPRU/                                                                                                
+├── CMakeLists.txt
+├── MCTargetDesc/
+│   ├── PRUInstPrinter.cpp
+│   ├── PRUMCAsmInfo.cpp
+│   ├── PRUMCCodeEmitter.cpp
+│   ├── PRUMCCodeEmitter.h
+│   ├── PRUMCTargetDesc.cpp
+│   ├── PRUMCTargetDesc.h
+│   └── PRUTargetStreamer.cpp
+│   └── PRUTargetStreamer.h
+├── TargetInfo/
+│   ├── PRUTargetInfo.cpp
+│   ├── PRUTargetInfo.h
+│   └── CMakeLists.txt
+├── PRU.h
+├── PRU.td
+├── PRUAsmPrinter.cpp
+├── PRUCallingConv.td
+├── PRUFrameLowering.cpp
+├── PRUFrameLowering.h
+├── PRUISelDAGToDAG.cpp
+├── PRUISelLowering.cpp
+├── PRUISelLowering.h
+├── PRUInstrFormats.td
+├── PRUInstrInfo.cpp
+├── PRUInstrInfo.h
+├── PRUInstrInfo.td
+├── PRUMachineFunctionInfo.cpp
+├── PRUMachineFunctionInfo.h
+├── PRURegisterInfo.cpp
+├── PRURegisterInfo.h
+├── PRURegisterInfo.td
+├── PRUSelectionDAGInfo.h
+├── PRUSubtarget.cpp
+├── PRUSubtarget.h
+└── PRUTargetMachine.cpp
+└── PRUTargetMachine.h
+</code></pre></div></div>
+<p>By implementing dummy code for the above, I was able to successfully register PRU as a target with LLVM version 16. This was a critical step in the development of the new PRU backend.</p>
+
+<p>Image</p>
+
+<h4 id="3-adding-code-for-pru-assembly-code-generation">3. Adding code for PRU assembly code generation</h4>
+
+<p>The third and final milestone of the project was to add code to the backend for PRU assembly code generation. Originally, the plan was to implement this milestone using LLVM version 16. However, due to the very limited to no documentation available for the changes in LLVM 16, it was decided to implement it in LLVM 8 instead.</p>
+
+<p>This decision ultimately proved to be the right one. By using LLVM 8, I was able to take advantage of the well-documented resources, which made it easier to develop a functional backend for the PRU architecture.</p>
+
+<p>Directory structure for PRU LLVM backend for <strong>milestone 3</strong>, added files to the milestone 2 codebase.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>lib/Target/PRU/
+├── CMakeLists.txt
+├── InstPrinter/
+│   ├── CMakeLists.txt
+│   ├── PRUInstPrinter.cpp
+│   └── PRUInstPrinter.h
+├── LLVMBuild.txt
+├── MCTargetDesc/
+│   ├── CMakeLists.txt
+│   ├── PRUAsmBackend.cpp
+│   ├── PRUELFObjectWriter.cpp
+│   ├── PRUFixupKinds.h
+│   ├── PRUMCAsmInfo.cpp
+│   ├── PRUMCAsmInfo.h
+│   ├── PRUMCCodeEmitter.cpp
+│   ├── PRUMCTargetDesc.cpp
+│   └── PRUMCTargetDesc.h
+├── PRU.h
+├── PRU.td
+├── PRUAsmPrinter.cpp
+├── PRUCallingConv.td
+├── PRUFrameLowering.cpp
+├── PRUFrameLowering.h
+├── PRUISelDAGToDAG.cpp
+├── PRUISelLowering.cpp
+├── PRUISelLowering.h
+├── PRUInstrFormats.td
+├── PRUInstrInfo.cpp
+├── PRUInstrInfo.h
+├── PRUInstrInfo.td
+├── PRUMCInstLower.cpp
+├── PRUMCInstLower.h
+├── PRUMachineFunctionInfo.cpp
+├── PRUMachineFunctionInfo.h
+├── PRURegisterInfo.cpp
+├── PRURegisterInfo.h
+├── PRURegisterInfo.td
+├── PRUSubtarget.cpp
+├── PRUSubtarget.h
+└── PRUTargetMachine.cpp
+└── PRUTargetMachine.h
+</code></pre></div></div>
+
+<p>Image</p>
+
+<h4 id="workflow-for-milestone-2-and-milestone-3">Workflow for Milestone 2 and Milestone 3:</h4>
+
+<h5 id="tablegen-description-files">TableGen description files</h5>
+
+<p>In order to implement a backend, I needed to write description files related to the target, that are called .td files. These .td files are translated into C++ source code by TableGen’s tool llvm-tblgen when building the compiler. The generated code is then used in the backend implementation.</p>
+
+<p>After the .td file is processed, some .inc files are generated under lib/Target/PRU/ in the build path. These .inc files are included in the backend implementation. The generated specification is what I specified in CMakeLists.txt.</p>
+
+<p>There are multiple .td files, divided into categories to describe various information of the target platform, such as register information, instruction information, calling convention etc.</p>
+
+<p>In order to implement a backend, I needed to write description files related to the target, that are called .td files. These .td files are translated into C++ source code by TableGen’s tool llvm-tblgen when building the compiler. The generated code is then used in the backend implementation.</p>
+
+<p>After the .td file is processed, some .inc files are generated under lib/Target/PRU/ in the build path. These .inc files are included in the backend implementation. The generated specification is what I specified in CMakeLists.txt.</p>
+
+<p>There are multiple .td files, divided into categories to describe various information of the target platform, such as register information, instruction information, calling convention etc.</p>
+
+<ul>
+  <li><strong>PRU.td</strong> - This is the top level entry point for the PRU target</li>
+</ul>
+
+<p>This file currently contains several other .td files, and then defines a subclass PRU based on the Target class.</p>
+
+<ul>
+  <li><strong>PRURegisterInfo.td</strong> - Register Information</li>
+</ul>
+
+<p>All registers and register sets (RegisterClass) are defined in this file. The class PRUReg inherits from the class RegisterWithSubRegs.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class PRUReg&lt;bits&lt;16&gt; num, string name, list&lt;Register&gt; subregs = [], list&lt;string&gt; altNames = []&gt; : RegisterWithSubRegs&lt;name, subregs&gt;  
+</code></pre></div></div>
+
+<ul>
+  <li><strong>PRUCallingConv.td</strong> - Calling Conventions</li>
+</ul>
+
+<p>The calling convention definitions describe the part of the ABI which controls how data moves between function calls.</p>
+
+<ul>
+  <li><strong>PRUInstrFormats.td</strong> - PRU Instruction formats</li>
+</ul>
+
+<p>This file describes the patterns for definitions of target-specific instructions. The highest-level class InstPRU of the PRU instruction inherits from the Instruction class.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class InstPRU&lt;dag outs, dag ins, string asmstr, list&lt;dag&gt; pattern&gt;
+	: Instruction { … }
+</code></pre></div></div>
+
+<p>In addition, because the instructions of PRU are divided into more categories, those subcategories inherit from the InstPRU class.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class ALU_Inst_RR&lt;bits&lt;3&gt; opcode, bits&lt;4&gt; instopcode, dag outs, dag ins, string asmstr,
+              	list&lt;dag&gt; pattern&gt;
+	: InstPRU&lt;outs, ins, asmstr, pattern&gt; { … }
+</code></pre></div></div>
+
+<ul>
+  <li><strong>PRUInstrInfo.td</strong> - Complete PRU Instruction Definitions</li>
+</ul>
+
+<p>The complete instruction definitions inherit from the instruction format classes to complete the TableGen Instruction base class. The multiclass functionality makes it easier to define multiple instructions that are very similar to each other. For example, the register-register (rr) and register-immediate (ri) ALU instructions are defined within the multiclass. It also contains some SDNode node definitions as well as operand type definitions.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def PRUcallseq_start :
+             	SDNode&lt;"ISD::CALLSEQ_START", SDT_PRUCallSeqStart,
+                    	[SDNPHasChain, SDNPOutGlue]&gt;;
+</code></pre></div></div>
+
+<h5 id="target-registration">Target registration</h5>
+
+<p>Once the necessary TableGen description files were written, the next step was to register the new target PRU with LLVM. The following things were done:</p>
+
+<ul>
+  <li>
+    <p>I created a <strong>PRU.h</strong> file under the PRU path. This file includes a number of other header files that are needed by the PRU backend.</p>
+  </li>
+  <li>
+    <p>I then created the <strong>PRUTargetMachine.cpp</strong> file and the corresponding header file. The PRUTargetMachine class is responsible for providing LLVM with information about the PRU target. It has the <code class="language-plaintext highlighter-rouge">LLVMInitializePRUTarget()</code> function.</p>
+  </li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>extern "C"  void LLVMInitializePRUTarget() {
+    RegisterTargetMachine&lt;PRUTargetMachine&gt; X(getThePRUTarget());
+}
+</code></pre></div></div>
+
+<ul>
+  <li>I then created a subdirectory <strong>lib/Target/PRU/TargetInfo/</strong>, and created PRUTargetInfo.cpp under this path. In this file, I called the RegisterTarget interface to register my PRU target.</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        extern "C" void LLVMInitializePRUTargetInfo() {
+       RegisterTarget&lt;Triple::pru&gt; X(getThePRUTarget(), "pru", "PRU microcontroller");
+         }
+</code></pre></div></div>
+
+<ul>
+  <li>I also created a subdirectory <strong>lib/Target/PRU/MCTargetDesc/</strong>, and created a new MCTargetDesc.cpp file and its corresponding header file in this path. Here, a function <code class="language-plaintext highlighter-rouge">LLVMInitializePRUTargetMC()</code> is written. The MCTargetDesc class is responsible for providing LLVM with information about the PRU target’s machine code.</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>extern "C" void LLVMInitializePRUTargetMC() {     
+    RegisterMCAsmInfo X(getThePRUTarget(), createPRUMCAsmInfo);  TargetRegistry::RegisterMCInstrInfo(getThePRUTarget(), createPRUMCInstrInfo);  TargetRegistry::RegisterMCRegInfo(getThePRUTarget(), createPRUMCRegisterInfo);  TargetRegistry::RegisterMCAsmBackend(getThePRUTarget(), createPRUAsmBackend);  TargetRegistry::RegisterMCCodeEmitter(getThePRUTarget(), createPRUMCCodeEmitter);  TargetRegistry::RegisterMCInstPrinter(getThePRUTarget(), createPRUMCInstPrinter);
+}
+</code></pre></div></div>
+
+<p>The PRUTargetInfo class calls the RegisterTarget method to register the PRU target with LLVM. The RegisterTarget method is defined in the TargetInfo class.
+The MCTargetDesc class provides LLVM with information about the PRU target’s machine code. This information is used by LLVM to generate code for the PRU target.
+These were the main things done for milestone 2.</p>
+
+<h4 id="the-work-for-milestone-3-was-divided-into-3-tasks">The work for milestone 3 was divided into 3 tasks:</h4>
+
+<h4 id="1-laying-the-foundations---pru-target-machine-architecture">1. Laying the Foundations - PRU Target Machine Architecture</h4>
+
+<p>In this task, I created/ modified a number of files to implement the target machine architecture for PRU. These files include:</p>
+
+<ul>
+  <li>
+    <p><strong>PRUTargetMachine.h/.cpp</strong>: These files define the essential class for the target machine architecture: PRUTargetMachine. This class inherits from LLVMTargetMachine and handles initialization tasks like DataLayout, relocation mod. The pivotal <code class="language-plaintext highlighter-rouge">getSubtargetImpl()</code> function constructs a Subtarget object, setting the stage for further architectural components.</p>
+  </li>
+  <li>
+    <p><strong>PRUFrameLowering.h/.cpp</strong>: This section focuses on Frame Lowering, critical for stack management. The PRUFrameLowering class inherits from TargetFrameLowering. It deals with the stack and manages various contents, including function parameters, registers, and more. The <code class="language-plaintext highlighter-rouge">hasFP()</code> method helps identify the presence of a Frame Pointer.</p>
+  </li>
+  <li>
+    <p><strong>PRUInstrInfo.h/.cpp</strong>: These files handle instruction-related actions, building upon the instruction descriptions generated by tablegen. The PRUInstrInfo class, inherited from PRUGenInstrInfo, contains critical elements, including the Subtarget object, which is initialised in the constructor.</p>
+  </li>
+  <li>
+    <p><strong>PRUISelLowering.h/.cpp</strong>: This file defines the interfaces that PRU uses to lower LLVM code into a selection DAG. Here, the PRUTargetLowering class is defined and inherited from TargetLowering. It integrates the PRUGenCallingConv.inc file, generated from PRUCallingConv.td, and provides methods like <code class="language-plaintext highlighter-rouge">LowerGlobalAddress()</code>,<code class="language-plaintext highlighter-rouge">LowerReturn()</code>, <code class="language-plaintext highlighter-rouge">LowerFormalArguments()</code> - transforms physical registers into virtual registers</p>
+  </li>
+  <li>
+    <p><strong>PRUMachineFunctionInfo.h/.cpp</strong>: Handling actions related to functions, the PRUMachineFunctionInfo class inherits the MachineFunctionInfo class. It declares methods related to parameters, currently serving as placeholders.</p>
+  </li>
+  <li>
+    <p><strong>PRURegisterInfo.h/.cpp</strong>: These files contain the PRUGenRegisterInfo.inc file, which defines the PRURegisterInfo based on PRUGenRegisterInfo. Several register-related methods are defined.</p>
+  </li>
+  <li>
+    <p><strong>PRUSubtarget.h/.cpp</strong>: This class, inherited from PRUGenSubtargetInfo, defines the PRUSubtarget. It maintains properties and establishes interfaces with other classes like <code class="language-plaintext highlighter-rouge">getInstrInfo()</code> and <code class="language-plaintext highlighter-rouge">getRegisterInfo()</code></p>
+  </li>
+</ul>
+
+<p>Completing Task 1 involved setting the stage for the entire PRU target machine architecture, from instruction handling to function management. These files form the cornerstone upon which subsequent development tasks will build.</p>
+
+<h4 id="2-adding-asmprinter-support">2. Adding AsmPrinter Support</h4>
+
+<p>With the groundwork laid, I added AsmPrinter support, a crucial component in code generation. This task focuses on turning Machine DAGs into assembly code through the following steps:</p>
+
+<ul>
+  <li>
+    <p><strong>InstPrinter/PRUInstPrinter.h/.cpp</strong>: These files introduce the InstPrinter module, primarily responsible for outputting MCInst to assembly files. The PRUInstPrinter class inherits from MCInstPrinter and includes the crucial <code class="language-plaintext highlighter-rouge">printInstruction()</code> function, generated by tblgen based on PRUInstrInfo.td. Additionally, <code class="language-plaintext highlighter-rouge">getRegisterName()</code> and various internal functions aid in outputting instructions.</p>
+  </li>
+  <li>
+    <p><strong>PRUMCInstLower.h/.cpp</strong>: These files handle the lowering of MI (Machine Instruction) to MCInst (Machine Code Instruction). The PRUMCInstLower class is defined, with its primary member function, <code class="language-plaintext highlighter-rouge">Lower()</code>, converting MI to MCInst. This step involves setting the Opcode and Operand list.</p>
+  </li>
+  <li>
+    <p><strong>MCTargetDesc/PRUMCAsmInfo.h/.cpp</strong>: These files introduce the PRUMCAsmInfo class, inherited from MCAsmInfoELF. Although relatively simple, it defines some assembly file format specifics.</p>
+  </li>
+  <li>
+    <p><strong>PRUAsmPrinter.h/.cpp</strong>: The PRUAsmPrinter class serves as the entry point for outputting MI-structured programs to assembly files. This class is inherited from AsmPrinter and implements various <code class="language-plaintext highlighter-rouge">Emit</code> functions for emitting different content. The AsmPrinter differs from the InstPrinter in that it emits MI to a file and handles additional information like debugging and file descriptions.</p>
+  </li>
+</ul>
+
+<p>Task 2 enriches the PRU target machine architecture by enabling it to produce assembly output, a fundamental step in the code generation process.</p>
+
+<h4 id="implementing-dagtodagisel---bridging-llvm-ir-to-machine-dag">Implementing DAGToDAGISel - Bridging LLVM IR to Machine DAG</h4>
+
+<p>Task 3 marks a pivotal phase in developing the PRU target machine architecture. It focuses on extending support for DAGToDAGISel, a critical component responsible for converting LLVM IR DAG (Directed Acyclic Graph) to the Machine DAG. This process is essential for ensuring that the high-level LLVM IR code can be transformed into low-level machine code instructions.</p>
+
+<ul>
+  <li>
+    <p><strong>PRUISelDAGToDAG.cpp</strong>: This file plays a central role in the implementation of DAGToDAGISel for the PRU architecture. The <code class="language-plaintext highlighter-rouge">PRUDAGToDAGISel</code> class is defined here, inheriting from the <code class="language-plaintext highlighter-rouge">SelectionDAGISel</code> class. It provides several key interfaces and functions:</p>
+
+    <ul>
+      <li>
+        <p><em>Select</em>: The Select function serves as the entry point for instruction selection. It is used for initial attempts at selecting instructions.</p>
+      </li>
+      <li>
+        <p><em>SelectCode</em>: If the initial selection in the Select function doesn’t result in a valid instruction, the process proceeds to the SelectCode function. The SelectCode function is defined in the <code class="language-plaintext highlighter-rouge">PRUGenDAGISel.inc</code> file, generated by tablegen. It attempts to select a valid instruction based on the patterns specified in the target description (td) files.</p>
+      </li>
+      <li>
+        <p><em>SelectAddr</em>: The SelectAddr function is responsible for selecting the execution of address modes. Since some nodes in the IR DAG represent complex address operands, this function handles their selection. The target description (td) files can describe specific patterns for address operands, and these patterns are left for the SelectAddr function to process.</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>PRUTargetMachine.cpp</strong>: In this file, a directive selector for DAG selection is registered. The PRUSEISelDAG class is added as part of this registration process. The <code class="language-plaintext highlighter-rouge">addInstSelector()</code> method, which overrides a method in the parent class <code class="language-plaintext highlighter-rouge">TargetPassConfig</code>, ensures that DAG instruction selection for PRU is supported.</p>
+  </li>
+</ul>
+
+<p>Task 3 completes the critical chain that allows LLVM to translate high-level LLVM IR code into machine-level instructions. It encompasses instruction selection, handling complex address operands, and ensuring that the generated machine code adheres to the PRU target architecture.</p>
+
+<h3 id="project-details">Project Details:</h3>
+
+<h4 id="project-name">Project Name:</h4>
+<h4 id="mentors">Mentors:</h4>
+<h4 id="code">Code:</h4>
+<h4 id="introductory-video">Introductory Video:</h4>
+<h4 id="proposal">Proposal:</h4>
+
+<h3 id="conclusion">Conclusion</h3>]]></content><author><name></name></author><summary type="html"><![CDATA[Final Report]]></summary></entry><entry><title type="html">Writing Tablegen files for PRU target</title><link href="https://khushi-balia.github.io/blog/2023/week-4/" rel="alternate" type="text/html" title="Writing Tablegen files for PRU target" /><published>2023-06-30T19:53:00+00:00</published><updated>2023-06-30T19:53:00+00:00</updated><id>https://khushi-balia.github.io/blog/2023/week-4</id><content type="html" xml:base="https://khushi-balia.github.io/blog/2023/week-4/"><![CDATA[<p>The LLVM project provides a powerful infrastructure for compiler development, enabling the creation of efficient and optimized code for various target architectures. To harness the full potential of LLVM, developers often need to provide accurate and detailed information about the target hardware. Two essential components in this process are the TableGen files for Register Info and Instruction Info.</p>
 
 <p><code class="language-plaintext highlighter-rouge">TableGen</code> is necessary for writing the abstract target description. This tool translates a target description file (.td) into C++ code that is used in code generation. Its main goal is to reduce large, tedious descriptions into smaller and flexible definitions that are easier to manage and structure.
  The idea is that TableGen is a maintainable and human-readable description which is translated into C++ by the tablegen tool and compiled, along with the hand-coded C++ files from your backend, when building LLVM.</p>
