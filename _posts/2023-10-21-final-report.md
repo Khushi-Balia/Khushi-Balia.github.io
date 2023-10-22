@@ -25,7 +25,7 @@ Gradually, I began to make progress. I started to understand the overall structu
 As the weeks turned into months, I slowly but surely made progress on the tasks. There were **three main milestones** of the project.
 
 
-#### 1. Understanding the Cpu0 backend tutorial and implementing it
+#### <ins>1. Understanding the Cpu0 backend tutorial and implementing it</ins>
 
 The first milestone of the project was to understand and implement the Cpu0 backend tutorial. This tutorial provides a step-by-step guide to building a new LLVM backend. By following the tutorial, I was able to gain a deep understanding of the LLVM backend architecture.
 
@@ -35,7 +35,7 @@ In order to use the tutorial as a starting point for my project, I had to make a
 
 You can find the steps of building the Cpu0 backend in [this blog](https://khushi-balia.github.io/blog/2023/week-2/) of mine.
 
-#### 2. New backend initialization for PRU
+#### <ins>2. New backend initialization for PRU<ins>
 
 The second milestone of the project was to implement the necessary infrastructure for supporting the PRU target. This involved registering PRU as a target with **LLVM version 16** (the latest version)
 
@@ -87,7 +87,7 @@ By implementing dummy code for the above, I was able to successfully register PR
 
 Image 
 
-#### 3. Adding code for PRU assembly code generation
+#### <ins>3. Adding code for PRU assembly code generation<ins>
 
 The third and final milestone of the project was to add code to the backend for PRU assembly code generation. Originally, the plan was to implement this milestone using LLVM version 16. However, due to the very limited to no documentation available for the changes in LLVM 16, it was decided to implement it in LLVM 8 instead.
 
@@ -143,7 +143,7 @@ Image
 
 Workflow for Milestone 2 and Milestone 3:
 
-##### TableGen description files
+##### <ins>TableGen description files<ins>
 
 In order to implement a backend, I needed to write description files related to the target, that are called .td files. These .td files are translated into C++ source code by TableGen's tool llvm-tblgen when building the compiler. The generated code is then used in the backend implementation.
 
@@ -200,7 +200,7 @@ def PRUcallseq_start :
                     	[SDNPHasChain, SDNPOutGlue]>;
 ```
 
-#### Target registration
+#### <ins>Target registration<ins>
 
 Once the necessary TableGen description files were written, the next step was to register the new target PRU with LLVM. The following things were done: 
 
@@ -236,7 +236,7 @@ These were the main things done for milestone 2.
 
 The work for milestone 3 was divided into 3 tasks:
 
-#### 1. Laying the Foundations - PRU Target Machine Architecture
+#### <ins>1. Laying the Foundations - PRU Target Machine Architecture<ins>
 
 In this task, I created/ modified a number of files to implement the target machine architecture for PRU. These files include:
 
@@ -256,7 +256,7 @@ In this task, I created/ modified a number of files to implement the target mach
 
 Completing Task 1 involved setting the stage for the entire PRU target machine architecture, from instruction handling to function management. These files form the cornerstone upon which subsequent development tasks will build.
 
-##### 2. Adding AsmPrinter Support
+##### <ins>2. Adding AsmPrinter Support<ins>
 
 With the groundwork laid, I added AsmPrinter support, a crucial component in code generation. This task focuses on turning Machine DAGs into assembly code through the following steps:
 
@@ -270,7 +270,7 @@ With the groundwork laid, I added AsmPrinter support, a crucial component in cod
 
 Task 2 enriches the PRU target machine architecture by enabling it to produce assembly output, a fundamental step in the code generation process.
 
-#### Implementing DAGToDAGISel - Bridging LLVM IR to Machine DAG
+#### <ins>Implementing DAGToDAGISel - Bridging LLVM IR to Machine DAG<ins>
 
 Task 3 marks a pivotal phase in developing the PRU target machine architecture. It focuses on extending support for DAGToDAGISel, a critical component responsible for converting LLVM IR DAG (Directed Acyclic Graph) to the Machine DAG. This process is essential for ensuring that the high-level LLVM IR code can be transformed into low-level machine code instructions.
 
@@ -286,7 +286,7 @@ Task 3 marks a pivotal phase in developing the PRU target machine architecture. 
 
 Task 3 completes the critical chain that allows LLVM to translate high-level LLVM IR code into machine-level instructions. It encompasses instruction selection, handling complex address operands, and ensuring that the generated machine code adheres to the PRU target architecture.
 
-### Project Details:
+### <ins>Project Details<ins>:
 
 #### Project Name:
 #### Mentors:
