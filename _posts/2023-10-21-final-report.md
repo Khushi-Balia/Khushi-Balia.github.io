@@ -256,7 +256,7 @@ In this task, I created/ modified a number of files to implement the target mach
 
 Completing Task 1 involved setting the stage for the entire PRU target machine architecture, from instruction handling to function management. These files form the cornerstone upon which subsequent development tasks will build.
 
-##### <ins>2. Adding AsmPrinter Support<ins>
+#### <ins>2. Adding AsmPrinter Support<ins>
 
 With the groundwork laid, I added AsmPrinter support, a crucial component in code generation. This task focuses on turning Machine DAGs into assembly code through the following steps:
 
