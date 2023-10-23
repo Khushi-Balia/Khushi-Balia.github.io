@@ -85,6 +85,8 @@ lib/TargetPRU/
 ```
 By implementing dummy code for the above, I was able to successfully register PRU as a target with LLVM version 16. This was a critical step in the development of the new PRU backend.
 
+Code: [PRU Target Registered - LLVM Version 16](https://github.com/Khushi-Balia/llvm-project/tree/llvm-pru)
+
 ![WhatsApp Image 2023-10-22 at 1 47 21 AM](https://github.com/Khushi-Balia/Khushi-Balia.github.io/assets/104241344/5fa1de17-3f8b-46b7-aa06-45cab9e9b130)
 
 
@@ -139,6 +141,10 @@ lib/Target/PRU/
 └── PRUTargetMachine.cpp
 └── PRUTargetMachine.h
 ```
+
+Code: [PRU Backend - LLVM Version 8](https://github.com/Khushi-Balia/llvm-project/tree/llvm-pru-8)
+
+
 ![WhatsApp Image 2023-10-22 at 11 25 02 PM(1)](https://github.com/Khushi-Balia/Khushi-Balia.github.io/assets/104241344/9c94e489-2612-409d-96b6-5a226be0e45b)
 
 Workflow for Milestone 2 and Milestone 3:
@@ -292,7 +298,7 @@ Project Name: **Building an LLVM Backend for PRU**
 
 Mentors: **Vedant Paranjape**, **Abhishek Kumar**, and **Shreyas Atre**
 
-Code: [llvm-project](https://github.com/Khushi-Balia/llvm-project/tree/llvm-pru)
+Code: [llvm-project](https://github.com/Khushi-Balia/llvm-project/)
 
 Introductory Video: [https://youtu.be/f4LVIW9VlrM?feature=shared](https://youtu.be/f4LVIW9VlrM?feature=shared)
 
